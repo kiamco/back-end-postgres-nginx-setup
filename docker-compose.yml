@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  pg:
+    image: postgres
+    enviroment: 
+      POSTGRES_PASSWORD: postgres 
+      POSTGRES_USER: postgres 
+      POSTGRES_DB: sample 
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports: 
+      - "5432:5432" 
+  nodeServer: 
+    image: backend
+    depends_on: 
+      - pg
+    ports:
+      "4000:4000"
